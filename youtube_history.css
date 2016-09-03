@@ -44,6 +44,7 @@ nuestro caso 20% * 0.5625 = 11.25% de padding
     margin:5px;
    /* background-color:#1E1E1E;*/
     overflow:hidden;
+	border: 1px solid black;
 }	
   /*  width: 30%;
     padding-bottom: 30%; /* = width for a square aspect ratio */
