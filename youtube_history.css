@@ -21,8 +21,7 @@ h2{
 }
 
 .cuadroVideo .contenidoVideo .imgVideo{
-	height: 141px;
-	width: 250px;
+	height: 50%;	
 	display: block;
     margin: 0 auto;
 }
