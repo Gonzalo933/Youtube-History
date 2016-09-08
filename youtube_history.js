@@ -151,7 +151,7 @@ numVideos = numVideos+1;
 				'<a target="_blank" href="'+urlVideo+'">'+
 					'<div class="contenidoVideo">'+
 						'<img src="'+urlImg+'" class="imgVideo">'+
-						'<p>' + title + ' - ' + videoId + '</p>'+
+						'<p>' + title +'</p>'+ //+ ' - ' + videoId + 
 					'</div>'+
 				'</a>'+
 			'</div>'+
