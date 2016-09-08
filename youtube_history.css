@@ -4,6 +4,11 @@ font-family: 'Roboto Slab', serif;
 font-size: 0.8em;
 }
 
+h2{
+	text-align: center;
+	color: #1985A1;
+	font-size: 2em;
+}
 .paging-button {
   visibility: hidden;
 }
