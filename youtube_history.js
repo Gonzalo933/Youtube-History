@@ -13,7 +13,8 @@ var playlistId, nextPageToken, prevPageToken;
 
 // After the API loads, call a function to get the uploads playlist ID.
 function handleAPILoaded() {
-  requestUserUploadsPlaylistId();
+	$("#divCargando").show();
+	requestUserUploadsPlaylistId(); 
 }
 
 // Call the Data API to retrieve the playlist ID that uniquely identifies the
@@ -112,17 +113,28 @@ function requestVideoPlaylist(playlistId, pageToken) {
         displayResult(item.snippet);
       });
     } else {
-      $('#video-container').html('Sorry you have no uploaded videos');
+      $('#video-container').html('Sorry you have no videos in your history');
     }
 	//console.log(nextPageToken);
 	if(nextPageToken)
 		nextPage();
-	else
-		console.log('fin, total videos: '+ numVideos);		
+	else{
+		console.log('fin, total videos: '+ numVideos);	
+		videosCargados(numVideos);
+	}
+		
   });
 
 }
-
+function videosCargados(numVideos){
+	var options = {
+	valueNames: ['titulo']
+	};
+	var userList = new List('video-container', options);
+	$("#video-container .search").show();
+	$("#divCargando").hide();
+	$("#divEstadisticas").html('<span>Total Videos: '+numVideos+'</span>');
+}
 // Create a listing for a video.
 function displayResult(videoSnippet) {
 numVideos = numVideos+1;
@@ -132,10 +144,18 @@ numVideos = numVideos+1;
   var urlImg  = videoSnippet.thumbnails == undefined ? 'https://i.ytimg.com/vi/OvSuLnybXz4/mqdefault.jpg' : videoSnippet.thumbnails.medium.url;
   var urlVideo = 'https://www.youtube.com/watch?v='+videoSnippet.resourceId.videoId;
   //var urlImg = (videoSnippet.thumbnails.medium.url || 'https://i.ytimg.com/vi/OvSuLnybXz4/mqdefault.jpg');
-  $('#video-container').append('<div class="cuadroVideo"><a href="'+urlVideo+'"><div class="contenidoVideo">'+
-	'<img src="'+urlImg+'" class="imgVideo">'+
-	'<p>' + title + ' - ' + videoId + '</p>'+
-	'</div></a></div>');
+  $('#video-container ul').append(
+	'<li>'+
+		'<span class="titulo" style="display:none;">'+title+'</span>'+
+			'<div class="cuadroVideo">'+
+				'<a href="'+urlVideo+'">'+
+					'<div class="contenidoVideo">'+
+						'<img src="'+urlImg+'" class="imgVideo">'+
+						'<p>' + title + ' - ' + videoId + '</p>'+
+					'</div>'+
+				'</a>'+
+			'</div>'+
+	'</li>');
 }
 
 // Retrieve the next page of videos in the playlist.
