@@ -3,20 +3,37 @@
   <head>
     <title>Youtube History</title>
     <link rel="stylesheet" type="text/css" href="youtube_history.css">
+	
+	<link href="https://fonts.googleapis.com/css?family=Roboto|Roboto+Slab" rel="stylesheet">
+	
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+    <script type="text/javascript" src="auth.js"></script>
+	<script type="text/javascript" src="list.js"></script>
+    <script type="text/javascript" src="youtube_history.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
   </head>
   <body>
+  <h2>Youtube Watch History</h2>
     <div id="login-container" class="pre-auth">
       This application requires access to your YouTube account.
       Please <a href="#" id="login-link">authorize</a> to continue.
-    </div>
-    <div id="video-container"></div>
-    <div class="button-container">
+    </div>	
+	<div id="divCargando" style="display:none;">
+		<img src="./img/loading.gif">
+		<span>Search unavailable until all videos are loaded</span>
+	</div>
+	<div id="divEstadisticas">
+	</div>
+    <div id="video-container">
+	<input class="search" placeholder="Search" style="display: none;"/>
+	<ul class="list">
+	</ul>
+	</div>
+
+    <div class="button-container" style="display:none">
       <button id="prev-button" class="paging-button" onclick="previousPage();">Previous Page</button>
       <button id="next-button" class="paging-button" onclick="nextPage();">Next Page</button>
     </div>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
-    <script type="text/javascript" src="auth.js"></script>
-    <script type="text/javascript" src="youtube_history.js"></script>
-    <script src="https://apis.google.com/js/client.js?onload=googleApiClientReady"></script>
+
   </body>
 </html>

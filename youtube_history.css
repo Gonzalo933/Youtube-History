@@ -1,3 +1,9 @@
+body{
+/*background-color:#DCDCDD;*/
+font-family: 'Roboto Slab', serif;
+font-size: 0.8em;
+}
+
 .paging-button {
   visibility: hidden;
 }
@@ -42,10 +48,50 @@ nuestro caso 20% * 0.5625 = 11.25% de padding
     width: 30%;
     padding-bottom : calc(30% * 0.5625); /* = width for a 1:1 aspect ratio */
     margin:5px;
-   /* background-color:#1E1E1E;*/
+	background-color:#DCDCDD;
     overflow:hidden;
-	border: 1px solid black;
+	/*border: 2px dashed #011936;*/
+	border-radius: 4px;
+
 }	
+
+#video-container ul{
+    list-style-type: none;
+}
+#video-container .search{
+	margin: 0px 3%;  
+	color: white;  
+	border-radius: 25px;
+	padding: 7px 14px;
+	background-color: #46494C;
+	border: solid 1px rgba(255, 255, 255, 0.2);
+	width: 100%;
+	box-sizing: border-box;	
+	margin-bottom: 5px;
+	width: 14%;
+}
+#video-container .search{
+	outline:none;
+}
+
+#divCargando{
+	text-align: center;
+}
+#divCargando img{
+	height: 50px; 
+}
+
+#divCargando span{
+	display: block;
+	font-size: 1em;
+	color: #b22a2a;
+}
+#divEstadisticas {
+	margin: 1% 3%;
+	color: #46494C;
+}
+
+
   /*  width: 30%;
     padding-bottom: 30%; /* = width for a square aspect ratio */
 /*
