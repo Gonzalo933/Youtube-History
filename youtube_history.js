@@ -148,7 +148,7 @@ numVideos = numVideos+1;
 	'<li>'+
 		'<span class="titulo" style="display:none;">'+title+'</span>'+
 			'<div class="cuadroVideo">'+
-				'<a href="'+urlVideo+'">'+
+				'<a target="_blank" href="'+urlVideo+'">'+
 					'<div class="contenidoVideo">'+
 						'<img src="'+urlImg+'" class="imgVideo">'+
 						'<p>' + title + ' - ' + videoId + '</p>'+
