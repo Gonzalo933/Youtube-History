@@ -3,7 +3,10 @@ body{
 font-family: 'Roboto Slab', serif;
 font-size: 0.8em;
 }
-
+#version{
+	font-size:9px;
+	float:right;
+}
 h2{
 	text-align: center;
 	color: #1985A1;
