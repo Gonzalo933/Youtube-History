@@ -25,8 +25,13 @@ function requestUserUploadsPlaylistId() {
     mine: true,
     part: 'contentDetails'
   });
-  request.execute(function(response) {
-  //console.log(response);
+  request.execute(function(response) {  
+  
+	if(response.result == undefined){
+		errorListaVacia();
+		return;
+	}
+	console.log(response);	
     playlistId = response.result.items[0].contentDetails.relatedPlaylists.watchHistory;
 	//playlistId = 'HLkFeJSUtoRQWYgQ9AJMYYRQ';
     requestVideoPlaylist(playlistId);
@@ -97,15 +102,14 @@ function requestVideoPlaylist(playlistId, pageToken) {
   }
   var request = gapi.client.youtube.playlistItems.list(requestOptions);
   request.execute(function(response) {
-  //console.log(response);
-    // Only show pagination buttons if there is a pagination token for the
-    // next or previous page of results.
+	console.log(response);
     nextPageToken = response.result.nextPageToken;
-    var nextVis = nextPageToken ? 'visible' : 'hidden';
+	
+    /*var nextVis = nextPageToken ? 'visible' : 'hidden';
     $('#next-button').css('visibility', nextVis);
     prevPageToken = response.result.prevPageToken
     var prevVis = prevPageToken ? 'visible' : 'hidden';
-    $('#prev-button').css('visibility', prevVis);
+    $('#prev-button').css('visibility', prevVis);*/
 
     var playlistItems = response.result.items;
     if (playlistItems) {
@@ -113,6 +117,8 @@ function requestVideoPlaylist(playlistId, pageToken) {
         displayResult(item.snippet);
       });
     } else {
+		errorListaVacia();
+		return;
       $('#video-container').html('Sorry you have no videos in your history');
     }
 	//console.log(nextPageToken);
@@ -126,18 +132,31 @@ function requestVideoPlaylist(playlistId, pageToken) {
   });
 
 }
+
 function videosCargados(numVideos){
 	var options = {
-	valueNames: ['titulo']
+		valueNames: ['titulo']
 	};
+	
+	if(numVideos == 0){
+		errorListaVacia();
+		return;
+	}
+		
 	var userList = new List('video-container', options);
 	$("#video-container .search").show();
 	$("#divCargando").hide();
 	$("#divEstadisticas").html('<span>Total Videos: '+numVideos+'</span>');
 }
+
+function errorListaVacia(){
+	$("#divCargando img").hide();
+	$("#divCargando span").html('Error: No videos Found');
+}
+
 // Create a listing for a video.
 function displayResult(videoSnippet) {
-numVideos = numVideos+1;
+	numVideos++;
   var title = videoSnippet.title;
   var videoId = videoSnippet.resourceId.videoId;
   //console.log(videoSnippet);
